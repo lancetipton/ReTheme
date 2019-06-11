@@ -1,10 +1,17 @@
 # Re-Theme
 Simple React ant React Native Theme builder / switcher
 
+
+# Setup
+  * Add to your package.json
+```js
+  're-theme': "git+https://github.com/lancetipton/ReTheme.git"
+```
+
 ## ReThemeProvider
- * Import the `ReThemeProvider` into your `App.js` or whatever the entry point is for the app
- * Wrap your app with the `ReThemeProvider`, and pass in your theme
- * Theme will be merged with the default theme
+  * Import the `ReThemeProvider` into your `App.js` or whatever the entry point is for the app
+  * Wrap your app with the `ReThemeProvider`, and pass in your theme
+  * Theme will be merged with the default theme
 
 ### Example 
 ```js
@@ -16,9 +23,16 @@ const myCustomTheme = {
 
 export const App from Component {
   
+  state = { theme: myCustomTheme }
+  
+  componentDidUpdate = () => {
+    this.props.theme !== this.state.theme &&
+      this.setState({ theme: this.props.theme })
+  }
+  
   render(){
     return  (
-      <ReThemeProvider value={ myCustomTheme } >
+      <ReThemeProvider value={ this.state.theme } >
         <App />
       </ReThemeProvider>
     )
