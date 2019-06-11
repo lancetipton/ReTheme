@@ -1,6 +1,11 @@
 import defaultTheme from './default_theme'
 
-const deepMerge = (...sources) => (
+/**
+ * Deep merges an array of objects together
+ * @param { array } sources - array of objects to join
+ * @returns { object | array } - merged object or array
+ */
+export const deepMerge = (...sources) => (
   sources.reduce(
     (merged, source) =>
       source instanceof Array
@@ -18,7 +23,7 @@ const deepMerge = (...sources) => (
                   // Also check if key is in the object
                   // Set to value or deepMerge the object with the current merged object
                   (
-                    typeof value !== 'function' &&
+                    !isFunc(value) &&
                     value instanceof Object &&
                     key in joined &&
                     // This will always return an object

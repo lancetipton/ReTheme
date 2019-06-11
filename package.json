@@ -1,8 +1,8 @@
 {
   "name": "re-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple Theme switcher / builder for React and React Native",
-  "main": "index.js",
+  "main": "/src/index.js",
   "repository": "https://github.com/lancetipton/ReTheme",
   "author": "Lance Tipton",
   "license": "MIT"
