@@ -23,7 +23,7 @@ export const deepMerge = (...sources) => (
                   // Also check if key is in the object
                   // Set to value or deepMerge the object with the current merged object
                   (
-                    !isFunc(value) &&
+                    typeof value !== 'function' &&
                     value instanceof Object &&
                     key in joined &&
                     // This will always return an object
