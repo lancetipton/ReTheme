@@ -55,4 +55,4 @@ export const deepMerge = (...sources) => (
  * Merges the default theme with the user theme base ond the MERGE_THEME variable
  * @param {Object} userTheme
  */
-export default const mergeTheme = (userTheme) => (MERGE_THEME && deepMerge(defaultTheme, userTheme) || userTheme)
+export const mergeTheme = (userTheme) => (MERGE_THEME && deepMerge(defaultTheme, userTheme) || userTheme)

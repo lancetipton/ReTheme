@@ -1,6 +1,6 @@
 import React from 'react'
 import ThemeContext from './context'
-import mergeTheme from './merge_theme'
+import { mergeTheme } from './merge_theme'
 
 const withTheme = Component => {
   return class extends React.Component {
