@@ -7,7 +7,7 @@ const withTheme = Component => {
     render() {
       return (
         <ThemeContext.Consumer>
-          { theme => (<Component theme={mergeTheme(theme)} { ...this.props } />) }
+          { (theme, merge) => (<Component theme={mergeTheme(theme, merge)} { ...this.props } />) }
         </ThemeContext.Consumer>
       )
     }
