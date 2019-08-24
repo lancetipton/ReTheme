@@ -1,9 +1,18 @@
 import defaultTheme from './default_theme'
 
+let MERGE_THEME = true
+
+/**
+ * Set if the default theme should be merged with the user defined theme
+ * Default is to true
+ * @param {boolean} value - true or false, if the default and user theme should be merged
+ */
+export const setThemeMerge = value => MERGE_THEME = Boolean(value)
+
 /**
  * Deep merges an array of objects together
- * @param { array } sources - array of objects to join
- * @returns { object | array } - merged object or array
+ * @param {array} sources - array of objects to join
+ * @returns {object|array} - merged object or array
  */
 export const deepMerge = (...sources) => (
   sources.reduce(
@@ -42,8 +51,8 @@ export const deepMerge = (...sources) => (
   )
 )
 
-const mergeTheme = (userTheme) => (
-  deepMerge(defaultTheme, userTheme)
-)
-
-export default mergeTheme
+/**
+ * Merges the default theme with the user theme base ond the MERGE_THEME variable
+ * @param {Object} userTheme
+ */
+export default const mergeTheme = (userTheme) => (MERGE_THEME && deepMerge(defaultTheme, userTheme) || userTheme)

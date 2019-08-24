@@ -1,4 +1,4 @@
-# Re-Theme
+# ReTheme
 Simple React ant React Native Theme builder / switcher
 
 
@@ -50,7 +50,7 @@ export const App from Component {
 ```js
 import { withTheme } from 're-theme'
 
-const Header from Component {
+class Header extends Component {
   
   render(){
     const { theme } = this.props
