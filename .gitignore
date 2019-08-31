@@ -58,7 +58,3 @@ lib/sync/clients
 app/git
 notes.sh
 *.env
-
-/build
-/esm
-/cjs
