@@ -373,7 +373,7 @@ var deepMerge = function deepMerge() {
     merged;
   }, {});
 };
-var mergeTheme = function mergeTheme(userTheme, merge) {
+var getTheme = function getTheme(userTheme, merge) {
   return merge && deepMerge(defaultTheme, userTheme) || userTheme;
 };
 
@@ -391,7 +391,7 @@ var withTheme = function withTheme(Component) {
           var _this = this;
           return React__default.createElement(ThemeContext.Consumer, null, function (theme, merge) {
             return React__default.createElement(Component, _extends({
-              theme: mergeTheme(theme, merge)
+              theme: getTheme(theme, merge)
             }, _this.props));
           });
         }
