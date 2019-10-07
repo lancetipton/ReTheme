@@ -1,5 +1,4 @@
-import { deepMerge, isObj } from './helpers'
-
+import { deepMerge, isObj } from 'jsutils'
 
 /**
  * Default theme

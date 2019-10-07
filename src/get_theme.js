@@ -1,6 +1,6 @@
 import { getDefaultTheme } from './default_theme'
-import { deepMerge, isObj } from './helpers'
-import { getDimensions } from './get_dimensions'
+import { deepMerge, isObj } from 'jsutils'
+import { getDimensions } from './dimensions'
 
 /**
  * Merges the default theme with the user theme base ond the MERGE_THEME variable
@@ -21,7 +21,7 @@ export const getTheme = (userTheme, merge, useDimensions) => {
     : merge
       ? deepMerge(getDefaultTheme(), userTheme)
       : userTheme
-  
+
   // Get subset theme that matches current dimensions is useDimensions is true
   return useDimensions
     ? getDimensions(mergedTheme)

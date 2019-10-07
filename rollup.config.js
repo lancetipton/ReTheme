@@ -4,6 +4,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import cleanup from 'rollup-plugin-cleanup'
+import { buildHook } from './buildHook'
 
 const outputFile = "./build/index.js"
 
@@ -13,6 +14,7 @@ export default {
     file: outputFile,
     format: "cjs"
   },
+  buildEnd: buildHook,
   external: id => /^react/.test(id),
   plugins: [
     replace({

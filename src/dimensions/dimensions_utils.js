@@ -2,10 +2,10 @@
 
 'use strict'
 
-import { isObj, deepMerge } from './helpers'
+import { deepMerge, isObj } from 'jsutils'
 
 
-const sizeMap = { mobile: 340, tablet: 760, desktop: 1080 },
+const sizeMap = { small: 340, medium: 760, large: 1080 }
 
 export const setDimensionsMap = updatedSizes => {
   updatedSizes.map(key => {
@@ -24,34 +24,35 @@ export const getDimensionsMap = () => sizeMap
  * Sizes for settings styles
  */
 export const sizeArrays = {
-  desktop:[ 'mobile', 'tablet', 'desktop' ],
-  tablet: [ 'mobile', 'tablet' ],
-  mobile: [ 'mobile' ]
+  large:[ 'small', 'medium', 'large' ],
+  medium: [ 'small', 'medium' ],
+  small: [ 'small' ]
 }
-
 
 
 /**
  * Joins the theme styles based on the passed in size
- * @param {string} size - current view size ( mobile, tablet, desktop )
+ * @param {string} size - current view size ( small, medium, large )
  * @param {Object} theme - current theme
  *
- * @returns {Object} - joined theme sizes (Mobile First!)
+ * @returns {Object} - joined theme sizes (small First!)
  */
 export const joinThemeDimensions = (size, theme) => {
 
   // If theres no theme, or not valid size, just return the passed in theme
-  if(!isObj(theme) || sizeArrays.desktop.indexOf(size) == -1 )
+  if(!isObj(theme) || sizeArrays.large.indexOf(size) == -1 )
     return theme
+  
+  const { small, medium, large, ...useTheme } = theme
   
   // Check if there is a valid current size
   return !sizeArrays[size]
-    // If no current size, check if there's a mobile theme
-    ? isObj(theme.mobile)
-      // If there is, merge with the root theme and return it ( Mobile First! )
-      ? deepMerge(theme, theme.mobile)
+    // If no current size, check if there's a small theme
+    ? isObj(theme.small)
+      // If there is, merge with the root theme and return it ( small First! )
+      ? deepMerge(useTheme, theme.small)
       // Otherwise just return the theme object
-      : theme
+      : useTheme
     : sizeArrays[size]
       .reduce((joined, size) => {
 
@@ -63,5 +64,5 @@ export const joinThemeDimensions = (size, theme) => {
           : joined
 
       // Pass in the original theme object to overwrite with the sizes styles
-      }, theme)
+      }, useTheme)
 }
